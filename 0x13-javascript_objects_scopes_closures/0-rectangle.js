@@ -1,5 +1,6 @@
 #!/usr/bin/node
-// Declaration class Rectangle
+
+//declaration class Rectangle
 class Rectangle {
 	//Emptyy class body
 }
