@@ -7,29 +7,18 @@ import MySqldb
 import sys
 
 if __name__ == "__main__":
-    mysql_username = sys.argv[1]
-    mysql_password = sys.argv[2]
-    db_name = sys.argv[3]
-
-    try:
-        conn = MySQLdb.connect(
-                host="localhost",
-                port=3306,
-                user=mysql_username,
-                pword=mysql_password,
-                db=db_name,
-                charset="utf8"
-                )
-    except MySQLdb.Error as e:
-        print ("Error connecting to database: {}".format(e))
-        sys.exit(1)
-
+    conn = MySQLdb.connect(host="localhost", port=3306,
+                           user=sys.argv[1], password=sys.argv[2],
+                           db=sys.argv[3])
+    # create a cursor
     cur=conn.cursor()
+    # execute MySQL query
     cur.execute("SELECT * FROM states ORDER BY id ASC")
+    # Fetch results
     rows = cur.fetchall()
-
+    # Loop through results
     for row in rows:
         print (row)
-
+    # close cursor
     cur.close()
     conn.close()
